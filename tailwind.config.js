@@ -27,21 +27,40 @@ module.exports = {
           dark: '#2a0a46'
         },
       },
+      boxShadow: {
+        'flip-card': '0 8px 14px 0 rgba(0,0,0,0.2)',
+      },
       transitionProperty: {
         'transform': 'transform',
       },
       transitionDuration: {
-        '600': '600ms',
+        '800': '800ms',
       },
       transitionTimingFunction: {
         'ease-in-out': 'ease-in-out',
       },
-      transform: {
-        'rotate-20': 'rotate(20deg)',
-        'rotate-30': 'rotate(30deg)',
-        'translate-x-40': 'translateX(40px)',
-        'translate-x-80': 'translateX(80px)',
-      }
+      perspective: {
+        '1000': '1000px',
+      },
+      borderRadius: {
+        'xl': '1rem',
+      },
+      transformStyle: {
+        'preserve-3d': 'preserve-3d',
+      },
+      backfaceVisibility: {
+        'hidden': 'hidden',
+      },
+      keyframes: {
+        spinSlow: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+      },
+      animation: {
+        'spin-slow': 'spinSlow 20s linear infinite',
+      },
+      
     },
   },
   plugins: [],

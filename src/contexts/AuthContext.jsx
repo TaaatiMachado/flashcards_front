@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext } from 'react';
 
 const AuthContext = createContext();
 
@@ -7,10 +7,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     setUser(userData);
+    localStorage.setItem("Token", userData.token);
   };
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem("Token");
   };
 
   return (

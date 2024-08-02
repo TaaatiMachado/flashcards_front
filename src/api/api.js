@@ -53,17 +53,14 @@ export const createCard = async (reqBody, funcOk, funcErr) => {
     }
 }
 
-export const getCards = async (secLang) => {
-    const response = await fetch(`${url}/flashcards/list?secondaryLanguage=${secLang}&time=0`, {
-        method: "get",
-        
+export const getCards = async (secLang, time) => {
+    const response = await fetch(`${url}/flashcards/list?secondaryLanguage=${secLang}&time=${time}`, {        method: "get",
         headers: { "Content-Type": "application/json",
             "Authorization" : `Bearer ${token}`
         }
     });
     if (response.ok) {
         const data = await response.json();
-        //console.log('req', data)
         return data
     }
     if (!response.ok){

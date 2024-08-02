@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createCard, getProfile } from '../../api/api';
+import { createCard } from '../../api/api';
 import {jwtDecode} from 'jwt-decode';
 import languages from '../../api/languages.json';
 
@@ -23,7 +23,6 @@ const NewCard = ({ onClose, onCardCreated }) => {
   };
 
   const cardCreated = () => { 
-    console.log('Card criado');
     onCardCreated(); 
     onClose(); 
   };
@@ -51,7 +50,6 @@ const NewCard = ({ onClose, onCardCreated }) => {
 
   const handleLanguageChange = (e) => {
     const { value } = e.target;
-    console.log(value)
     setFormData((prevFormData) => ({
       ...prevFormData,
       secondaryLanguage: value

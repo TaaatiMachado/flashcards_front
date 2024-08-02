@@ -11,14 +11,14 @@ const Collection = () => {
 
   useEffect(() => {
     getProfile().then(setUserData).catch(error => {
-      console.error("Erro ao buscar o perfil:", error);
+      console.log("Erro ao buscar o perfil:", error);
     });
   }, []);
 
   useEffect(() => {
     if (selectedLanguage) {
       getCards(selectedLanguage).then(setFlashcards).catch(error => {
-        console.error("Erro ao buscar os flashcards:", error);
+        console.log("Erro ao buscar os flashcards:", error);
         setFlashcards([]);
       });
     }
@@ -33,14 +33,13 @@ const Collection = () => {
   };
 
   const handleLanguageChange = (e) => {
-    console.log(e.target.value)
     setSelectedLanguage(e.target.value);
   };
 
   const handleCardCreated = () => {
     if (selectedLanguage) {
       getCards(selectedLanguage).then(setFlashcards).catch(error => {
-        console.error("Erro ao atualizar os flashcards:", error);
+        console.log("Erro ao atualizar os flashcards:", error);
         setFlashcards([]);
       });
     }
@@ -55,18 +54,18 @@ const Collection = () => {
       <h1 className="text-4xl font-comfortaa mb-6 pb-4 text-light-dark dark:text-dark-primary text-center border-b-2 border-dashed border-b-light-highlight ">
         Coleção de {userData.name}
       </h1>
-      <section>
+      <section className='flex justify-between'>
         <div>
           <label htmlFor="language-select" className="block text-light-dark dark:text-dark-primary">Escolha um idioma para ver a coleção:</label>
           <select
             id="language-select"
             value={selectedLanguage}
             onChange={handleLanguageChange}
-            className="w-[35%] p-3 border border-gray-300 rounded  mr-6 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            className="w-full p-3 border border-gray-300 rounded  mr-6 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
           >
             <option value=""></option>
-            {userData.languages.map((item, index) => (
-              <option key={index+1} value={item.secondaryLanguage}>
+            {userData.languages.map((item) => (
+              <option key={item.secondaryLanguage} value={item.secondaryLanguage}>
                 {item.secondaryLanguage}
               </option>
             ))}
@@ -84,7 +83,7 @@ const Collection = () => {
       {isModalOpen && <FlashcardModal onClose={handleCloseModal} onCardCreated={handleCardCreated} />}
 
       <div className='flex flex-wrap gap-10 p-8'>
-        {flashcards.map((item, index) => <Flashcard key={index+1} item={item} />)}
+        {flashcards.map((item) => <Flashcard key={item.id} item={item} />)}
       </div>
     </div>
   );

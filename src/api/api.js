@@ -53,8 +53,23 @@ export const createCard = async (reqBody, funcOk, funcErr) => {
     }
 }
 
-export const getCards = async (secLang) => {
-    const response = await fetch(`${url}/flashcards/list?secondaryLanguage=${secLang}`, {
+export const getCards = async (secLang, time) => {
+    const response = await fetch(`${url}/flashcards/list?secondaryLanguage=${secLang}&time=${time}`, {        method: "get",
+        headers: { "Content-Type": "application/json",
+            "Authorization" : `Bearer ${token}`
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        return data
+    }
+    if (!response.ok){
+        console.log('error', response)
+    }
+}
+
+export const getProfile = async () => {
+    const response = await fetch(`${url}/profile`, {
         method: "get",
         
         headers: { "Content-Type": "application/json",
@@ -62,9 +77,9 @@ export const getCards = async (secLang) => {
         }
     });
     if (response.ok) {
-        const data = await response.json();
-        //console.log('req', data)
-        return data
+        const profileData = await response.json();
+        //console.log('req', profileData)
+        return profileData
     }
     if (!response.ok){
         console.log('error', response)
